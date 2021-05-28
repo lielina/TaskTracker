@@ -5,27 +5,11 @@ import Hn from "./componets/Headerr.js";
 import Tasks from "./componets/Tasks";
 import AddTask from "./componets/AddTask";
 
+
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: "Doctors Appointement",
-      day: "Feb 5th at 2:30pm",
-      reminder: true
-    },
-    {
-      id: 2,
-      text: "Meeting at schoool",
-      day: "Feb 6th at 1:30pm",
-      reminder: true
-    },
-    {
-      id: 3,
-      text: "Food shoping",
-      day: "Feb 5th at 2:30 pm",
-      reminder: ""
-    }
-  ]);
+ // const todolist=useSelector(selectTodolist) 
+  const [tasks, setTasks] = useState([])
+
 
   // add task
   const addTask = task => {
@@ -47,19 +31,19 @@ function App() {
       )
     );
   };
+  
 
   return (
     <div className="container">
       <Hn showAdd={shwoAddtask} onAdd={() => setshowaddtask(!shwoAddtask)} />
-      {shwoAddtask && <AddTask onAdd={addTask} />}
-      {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
-      ) : (
-          "NO TASKS TO SHOW :("
-        )}
+      {shwoAddtask && <AddTask />}
+     
+        <Tasks/>
+      
       <footer />
     </div>
   );
 }
 
 export default App;
+ 

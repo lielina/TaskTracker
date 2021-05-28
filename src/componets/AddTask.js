@@ -1,13 +1,16 @@
 import { useState } from "react";
-import Usedispatch from 'react-redux'
-import saveTodo from '../featuers/todoSlice'
+import{ useDispatch} from 'react-redux'
+import { addTodo } from "../featuers/actions";
 
 
-const AddTask = ({ onAdd }) => {
+
+
+const AddTask = () => {
   const [text, setText] = useState("");
   const [day, setDay] = useState("");
   const [reminder, setReminder] = useState(false);
-  const [input ,setInput]=useState('')
+  const [value, setvalue] = useState()
+  const dispatch = useDispatch()
   const onSubmit = e => {
     e.preventDefault();
 
@@ -15,30 +18,28 @@ const AddTask = ({ onAdd }) => {
       alert("Please add a task");
       return;
     }
+      
+    dispatch(addTodo({
+      id: Date.now,
+      text: text,
+      day: day,
+      reminder: reminder
+    }))
+    setDay("")
+    setReminder(false)
+    setText('')
 
-    onAdd({ text, day, reminder });
-
-    setText("");
-    setDay("");
-    setReminder(false);
+  }
+        
 
 
-
-   
-   };
-
-  
-  dispatchEvent(saveTodo({
-      id: 1,
-      text: "Doctors Appointement",
-      day: "Feb 5th at 2:30pm",
-      reminder: true
-  }))
+ 
+ 
 
   
   
   return (
-    <form className="add-form" onSubmit={onSubmit}>
+    <form className="add-form" onSubmit= {onSubmit}>
       <div className="form-control">
         <label> Task</label>
         <input

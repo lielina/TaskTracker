@@ -1,11 +1,15 @@
 import { FaTimes } from "react-icons/fa";
-const Task = ({ task, onDelete, onToggle }) => {
+import { useDispatch } from 'react-redux';
+import { deleteTodo, updateTodo } from '../featuers/actions';
+ 
+const Task = ({ task }) => {
+  let dispatch = useDispatch();
   return (
-    <div className="event`" onDoubleClick={() => onToggle(task.id)}>
+    <div className={ `event ${task.reminder?'reminder':'nn'}`} >
       <h3>
         
         {task.text} {""}
-        <FaTimes style={{ color: "red" }} onClick={() => onDelete(task.id)} />
+        <FaTimes style={{ color: "red" }} onClick= {() => dispatch(deleteTodo(task.id))} />
       </h3>
       <p>{task.day} </p>
     </div>

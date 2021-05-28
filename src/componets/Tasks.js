@@ -1,14 +1,20 @@
+import { useSelector } from "react-redux";
 import Task from "./Task";
-const DeleteTask = id => { };
-const Tasks = ({ tasks, onDelete, onToggle }) => {
+
+//const DeleteTask = id => { };
+const Tasks = () => {
+  const todos = useSelector(state => state);
+  console.log(todos);
+  
   return (
+
     <div>
-      {tasks.map(task => (
+      {todos.map(task => (
         <Task
-          key={task.id}
+          key={todos.id}
           task={task}
-          onDelete={onDelete}
-          onToggle={onToggle}
+          // onDelete={onDelete}
+          // onToggle={onToggle}
         />
       ))}
     </div>

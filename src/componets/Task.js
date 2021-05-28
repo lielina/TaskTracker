@@ -1,11 +1,13 @@
 import { FaTimes } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
-import { deleteTodo, updateTodo } from '../featuers/actions';
+import { deleteTodo, toggleReminder} from '../featuers/actions';
  
 const Task = ({ task }) => {
   let dispatch = useDispatch();
   return (
-    <div className={ `event ${task.reminder?'reminder':'nn'}`} >
+     <div className={`event ${task.reminder ? 'reminder' : 'nn'}`}
+onDoubleClick={() => dispatch(toggleReminder(task.id))}
+    >
       <h3>
         
         {task.text} {""}

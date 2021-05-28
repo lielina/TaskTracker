@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import { ADD_TODO, UPDATE_TODO, DELETE_TODO } from './actions';
+import { ADD_TODO,  DELETE_TODO, TOGGLE } from './actions';
 import { todos } from './states';
 
 
@@ -12,10 +12,22 @@ export let reducer = (state = todos, action) => {
             return newTodos;
         case DELETE_TODO:
             newTodos = [...state];
-            newTodos = newTodos.filter(todo => todo.id != action.payload);
+            newTodos = newTodos.filter(todo => todo.id !== action.payload);
             return newTodos;
-       
-        
+        case TOGGLE:
+             newTodos = [...state];
+    
+            for (let i = 0; i < newTodos.length; i++) {
+                
+                if (newTodos[i].id == action.payload.id) {
+
+                    newTodos[i].reminder = !(newTodos[i].reminder)
+                    console.log( newTodos[i].reminder);
+                }
+ 
+            }
+             
+            return newTodos;
 
     }
     return state;

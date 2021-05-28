@@ -8,13 +8,13 @@ const Tasks = () => {
   
   return (
 
-    <div>
+    <div >
       {todos.map(task => (
-        <Task
+        <Task 
           key={todos.id}
           task={task}
           // onDelete={onDelete}
-          // onToggle={onToggle}
+          
         />
       ))}
     </div>
